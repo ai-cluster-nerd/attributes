@@ -1,5 +1,5 @@
 # Base Image
-FROM ubuntu:noble-20250529
+FROM python:3.13.5-bookworm
 
 
 # If the steps of a `Dockerfile` use files that are different from the `context` file, COPY the
@@ -12,16 +12,13 @@ COPY /.devcontainer/requirements.txt /app
 SHELL [ "/bin/bash", "-c" ]
 
 
-# Setting Up
-ENV TZ=Europe/London
-RUN apt clean && apt -q -y update && apt -q -y upgrade && apt -y install sudo && \ 
-    apt install -y tzdata && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo $TZ > /etc/timezone && apt clean && \
-    apt -y install graphviz vim unzip wget curl && \
-    apt -y install software-properties-common && \ 
-    add-apt-repository ppa:git-core/ppa && apt -y install git-all && \
-    apt install -y build-essential libssl-dev libffi-dev && \
-    apt install -y python3 python3-dev python3-pip python3-yaml python3-venv
+# Setting-up
+RUN apt update && apt -q -y upgrade && apt -y install sudo && sudo apt -y install graphviz && \
+    sudo apt -y install wget && sudo apt -y install curl && sudo apt -y install unzip && \
+    curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "/tmp/awscliv2.zip" && \
+    unzip /tmp/awscliv2.zip -d /tmp/ && cd /tmp && sudo ./aws/install && cd ~ && \
+    pip install --upgrade pip && \
+    pip install --requirement /app/requirements.txt --no-cache-dir
 
 
 # Port
