@@ -12,6 +12,13 @@ COPY /.devcontainer/requirements.txt /app
 SHELL [ "/bin/bash", "-c" ]
 
 
+# Setting Up
+ENV TZ=Europe/London
+RUN apt clean && apt -q -y update && apt -q -y upgrade && apt -y install sudo && \ 
+    apt install -y tzdata && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
+    echo $TZ > /etc/timezone && apt clean
+
+
 # Port
 EXPOSE 8050
 
