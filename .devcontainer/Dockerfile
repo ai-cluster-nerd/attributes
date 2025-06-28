@@ -1,5 +1,5 @@
 # Base Image
-FROM ubuntu:noble
+FROM ubuntu:noble-20250529
 
 
 # If the steps of a `Dockerfile` use files that are different from the `context` file, COPY the
