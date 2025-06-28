@@ -16,7 +16,10 @@ SHELL [ "/bin/bash", "-c" ]
 ENV TZ=Europe/London
 RUN apt clean && apt -q -y update && apt -q -y upgrade && apt -y install sudo && \ 
     apt install -y tzdata && ln -sf /usr/share/zoneinfo/$TZ /etc/localtime && \
-    echo $TZ > /etc/timezone && apt clean
+    echo $TZ > /etc/timezone && apt clean && \
+    apt -y install graphviz vim unzip wget curl && \
+    apt -y install software-properties-common && \ 
+    add-apt-repository ppa:git-core/ppa && apt -y install git-all
 
 
 # Port
