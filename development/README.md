@@ -1,6 +1,8 @@
 <br>
 
-## UBUNTU
+## docker, dockerfile
+
+### Cleaning-up
 
 [Pruning](https://docs.docker.com/engine/manage-resources/pruning/)
 
@@ -10,7 +12,7 @@ docker system prune --volumes
 
 <br>
 
-## Dockerfile
+### Dockerfile
 
 This ``... clears out the local repository of retrieved package files'' via [advanced packaging tool (APT)](https://manpages.ubuntu.com/manpages/xenial/man8/apt-get.8.html)
 
@@ -32,7 +34,7 @@ RUN apt clean && apt -q -y update && apt -q -y upgrade && \
 <br>
 
 
-## Container Image & Jupyter Lab
+### Container Image & Jupyter Lab
 
 Launching `jupyter lab`
 
@@ -44,6 +46,8 @@ jupyter lab --ip 0.0.0.0 --port 8888 --no-browser  --allow-root
 <br>
 
 ## Remote Development
+
+### Setting Up
 
 For this Python project/template, the remote development environment requires
 
